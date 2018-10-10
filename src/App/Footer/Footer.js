@@ -3,7 +3,7 @@ import { CustomText } from '../styled-components/StyledComponents';
 
 const Footer = () => {
   return (
-    <div className="Footer w-100 pv4 flex justify-between items-center b--light-silver bt">
+    <div className="Footer w-100 pv4 flex justify-between items-center b--light-silver bt bb">
       <div className="flex left-half w-40">
         <CustomText>&copy; 2018 GitHub Clone by kapil5harma</CustomText>
         <CustomText>Terms</CustomText>
