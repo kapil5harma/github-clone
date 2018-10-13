@@ -1,5 +1,6 @@
 import React from 'react';
 import { CustomText } from '../styled-components/StyledComponents';
+import DynamicContent from '../DynamicContent/DynamicContent';
 
 const Main = props => {
   const { avatarUrl, bio, location, name, websiteUrl } = props;
@@ -24,13 +25,8 @@ const Main = props => {
           <a href={websiteUrl}>{websiteUrl}</a>
         </CustomText>
       </div>
-      <div className="dynamic-content w-100 mw8">
-        <h2>This will be Dynamic</h2>
-        <h3>
-          Dynamic content like pinned repositories, repository list, etc comes
-          here
-        </h3>
-      </div>
+
+      <DynamicContent />
     </main>
   );
 };
