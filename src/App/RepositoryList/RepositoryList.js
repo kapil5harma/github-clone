@@ -25,7 +25,7 @@ class RepositoryList extends Component {
             key={id}
           >
             <div className="line-1 flex b blue">
-              <span className="grow">{name}</span>
+              <span className="grow pointer">{name}</span>
             </div>
 
             <div className="line-2 pv2">

@@ -35,7 +35,7 @@ class Overview extends Component {
                   d="M8 4v1H0V4h8zM0 8h8V7H0v1zm0 3h8v-1H0v1z"
                 />
               </svg>
-              <div className="pl2 grow">{name}</div>
+              <div className="pl2 grow pointer">{name}</div>
             </div>
             <div className="line-2 pv2">
               <i>{description}</i>

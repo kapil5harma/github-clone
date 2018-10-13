@@ -9,19 +9,24 @@ const Main = props => {
     <main className="Container flex justify-center pa3 tc">
       <div className="static-content mr3 w5 mw5 tl">
         <img className="br2" src={avatarUrl} alt={name} />
-        <CustomText padding="0.5rem 0" fontSize="2rem" fontWeight="bold">
+        <CustomText
+          className="dark-gray"
+          padding="0.5rem 0"
+          fontSize="2rem"
+          fontWeight="bold"
+        >
           {name}
         </CustomText>
         <CustomText padding="0.5rem 0" fontSize="1rem">
-          <b>Bio: </b>
+          <b className="dark-gray">Bio: </b>
           {bio}
         </CustomText>
         <CustomText padding="0.5rem 0" fontSize="1rem">
-          <b>Location: </b>
+          <b className="dark-gray">Location: </b>
           {location}
         </CustomText>
         <CustomText padding="0.5rem 0" fontSize="1rem">
-          <b>Website: </b>
+          <b className="dark-gray">Website: </b>
           <a href={websiteUrl}>{websiteUrl}</a>
         </CustomText>
       </div>

@@ -39,7 +39,7 @@ class Followers extends Component {
               <span className="pl3 b">{name}</span>
               <span className="pl3">{login}</span>
             </div>
-            <span className="ba b--gray bg-light-gray br2 pa2">
+            <span className="ba b--gray bg-light-gray pointer br2 pa2">
               {viewerIsFollowing ? 'Unfollow' : 'Follow'}
             </span>
           </div>

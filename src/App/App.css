@@ -1,3 +1,17 @@
+html,
+body {
+  color: #666;
+}
+
+h2 {
+  font-weight: normal;
+  color: #333;
+}
+
+.octicon {
+  color: #586069;
+}
+
 #logo {
   width: 48px;
   height: 48px;
