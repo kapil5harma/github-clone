@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 
-var GitHubCalendar = require('github-calendar');
+const GitHubCalendar = require('github-calendar');
 
 class Overview extends Component {
+  componentDidMount = () => {
+    GitHubCalendar('#github-calendar', this.props.username);
+  };
+
+  // componentDidUpdate = (prevProps, prevState) => {};
+
   render() {
-    const { username, pinnedRepositories } = this.props;
+    const { pinnedRepositories } = this.props;
     let pinnedRepos = null;
 
     if (pinnedRepositories) {
@@ -38,10 +44,6 @@ class Overview extends Component {
           </div>
         );
       });
-    }
-
-    if (username) {
-      GitHubCalendar('#github-calendar', username);
     }
 
     return (
