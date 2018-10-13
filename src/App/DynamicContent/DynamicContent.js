@@ -4,9 +4,11 @@ import 'react-tabs/style/react-tabs.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { GET_TABS_DATA } from '../../queries/queries';
 import { Query } from 'react-apollo';
+
 import Overview from './Overview';
 import RepositoryList from '../RepositoryList/RepositoryList';
 import Followers from './Followers';
+import Stars from './Stars';
 
 const User = 'kapil5harma';
 
@@ -17,11 +19,18 @@ class DynamicContent extends Component {
         {res => {
           // console.log('res: ', res);
           const {
-            data: { pinnedRepositories, repositories, followers, following },
+            data: {
+              pinnedRepositories,
+              repositories,
+              starredRepositories,
+              followers,
+              following
+            },
             loading
           } = res;
           // console.log('pinnedRepositories: ', pinnedRepositories);
           // console.log('repositories: ', repositories);
+          // console.log('starredRepositories: ', starredRepositories);
           // console.log('followers: ', followers);
           // console.log('following: ', following);
 
@@ -47,7 +56,7 @@ class DynamicContent extends Component {
                   <RepositoryList {...repositories} loading={loading} />
                 </TabPanel>
                 <TabPanel>
-                  <h2>Stars</h2>
+                  <Stars {...starredRepositories} loading={loading} />
                 </TabPanel>
                 <TabPanel>
                   <Followers {...followers} />
