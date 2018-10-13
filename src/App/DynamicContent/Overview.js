@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { CustomText } from '../styled-components/StyledComponents';
+
+var GitHubCalendar = require('github-calendar');
 
 class Overview extends Component {
   render() {
-    const { pinnedRepositories } = this.props;
+    const { username, pinnedRepositories } = this.props;
     let pinnedRepos = null;
+
     if (pinnedRepositories) {
       pinnedRepos = pinnedRepositories.edges.map(repo => {
-        console.log('repo: ', repo);
         const { id, description, name, primaryLanguage } = repo.node;
         return (
           <div
@@ -39,12 +40,15 @@ class Overview extends Component {
       });
     }
 
-    console.log('this.props: ', this.props);
+    if (username) {
+      GitHubCalendar('#github-calendar', username);
+    }
 
     return (
       <div className="Overview flex flex-column">
         <span className="mt3 mb2">Pinned Repositories: </span>
         <div className="pinned-repositories flex flex-wrap">{pinnedRepos}</div>
+        <div id="github-calendar" />
       </div>
     );
   }

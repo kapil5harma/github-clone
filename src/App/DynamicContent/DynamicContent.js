@@ -25,7 +25,7 @@ class DynamicContent extends Component {
                 </TabList>
 
                 <TabPanel>
-                  <Overview {...user} loading={loading} />
+                  <Overview {...user} username={User} loading={loading} />
                 </TabPanel>
                 <TabPanel>
                   <h2>Repository List</h2>
