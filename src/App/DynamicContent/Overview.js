@@ -40,7 +40,9 @@ class Overview extends Component {
             <div className="line-2 pv2">
               <i>{description}</i>
             </div>
-            <div className="line-3">{primaryLanguage.name}</div>
+            {primaryLanguage ? (
+              <div className="line-3">{primaryLanguage.name}</div>
+            ) : null}
           </div>
         );
       });
@@ -48,7 +50,7 @@ class Overview extends Component {
 
     return (
       <div className="Overview flex flex-column">
-        <span className="mt3 mb2">Pinned Repositories: </span>
+        <span className="mt3 mb2 b">Pinned Repositories: </span>
         <div className="pinned-repositories flex flex-wrap">{pinnedRepos}</div>
         <div id="github-calendar" />
       </div>

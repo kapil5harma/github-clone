@@ -2,17 +2,29 @@ import React, { Component } from 'react';
 
 import 'react-tabs/style/react-tabs.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { GET_PINNED_REPOSITORIES } from '../../queries/queries';
+import { GET_TABS_DATA } from '../../queries/queries';
 import { Query } from 'react-apollo';
 import Overview from './Overview';
+import RepositoryList from '../RepositoryList/RepositoryList';
+import Followers from './Followers';
 
 const User = 'kapil5harma';
 
 class DynamicContent extends Component {
   render() {
     return (
-      <Query query={GET_PINNED_REPOSITORIES} variables={{ User }}>
-        {({ data: { user }, loading }) => {
+      <Query query={GET_TABS_DATA} variables={{ User }}>
+        {res => {
+          // console.log('res: ', res);
+          const {
+            data: { pinnedRepositories, repositories, followers, following },
+            loading
+          } = res;
+          // console.log('pinnedRepositories: ', pinnedRepositories);
+          // console.log('repositories: ', repositories);
+          // console.log('followers: ', followers);
+          // console.log('following: ', following);
+
           return (
             <div className="dynamic-content w-100 mw8 tl">
               <Tabs>
@@ -25,19 +37,23 @@ class DynamicContent extends Component {
                 </TabList>
 
                 <TabPanel>
-                  <Overview {...user} username={User} loading={loading} />
+                  <Overview
+                    {...pinnedRepositories}
+                    username={User}
+                    loading={loading}
+                  />
                 </TabPanel>
                 <TabPanel>
-                  <h2>Repository List</h2>
+                  <RepositoryList {...repositories} loading={loading} />
                 </TabPanel>
                 <TabPanel>
                   <h2>Stars</h2>
                 </TabPanel>
                 <TabPanel>
-                  <h2>Followers Content</h2>
+                  <Followers {...followers} />
                 </TabPanel>
                 <TabPanel>
-                  <h2>Following Content</h2>
+                  <Followers {...following} />
                 </TabPanel>
               </Tabs>
             </div>
