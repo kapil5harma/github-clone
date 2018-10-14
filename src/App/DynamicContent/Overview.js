@@ -52,7 +52,7 @@ class Overview extends Component {
       <div className="Overview flex flex-column">
         <span className="mt3 mb2 b">Pinned Repositories: </span>
         <div className="pinned-repositories flex flex-wrap">{pinnedRepos}</div>
-        <div id="github-calendar" />
+        <div id="github-calendar" className="mw7 ph3" />
       </div>
     );
   }
