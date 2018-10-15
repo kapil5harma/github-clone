@@ -42,13 +42,13 @@ const rootReducer = (state, action) => {
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware()));
 
 const app = (
-  <ApolloProvider client={client}>
-    <Provider store={store}>
-      <BrowserRouter>
+  <BrowserRouter>
+    <ApolloProvider client={client}>
+      <Provider store={store}>
         <App />
-      </BrowserRouter>
-    </Provider>
-  </ApolloProvider>
+      </Provider>
+    </ApolloProvider>
+  </BrowserRouter>
 );
 
 ReactDOM.render(app, document.getElementById('root'));
