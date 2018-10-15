@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Stars extends Component {
   render() {
-    console.log('this.props: ', this.props);
+    // console.log('this.props: ', this.props);
 
     const { starredRepositories } = this.props;
     let starredRepositoryList = null;
 
     if (starredRepositories) {
       starredRepositoryList = starredRepositories.edges.map(repo => {
-        console.log('repo: ', repo);
+        // console.log('repo: ', repo);
         const {
           id,
           description,
@@ -27,9 +28,14 @@ class Stars extends Component {
             key={id}
           >
             <div className="flex flex-column w-100 mh2">
-              <div className="line-1 flex b blue">
-                <span className="grow pointer">{name}</span>
-              </div>
+              <Link
+                to={name.toLowerCase()}
+                className="no-underline underline-hover blue"
+              >
+                <div className="line-1 flex b">
+                  <span className="pointer">{name}</span>
+                </div>
+              </Link>
 
               <div className="line-2 pv2">
                 <i>{description}</i>
@@ -63,7 +69,7 @@ class Stars extends Component {
                 <div className="flex items-center fork-count pr3">
                   <svg
                     aria-label="fork"
-                    class="octicon octicon-repo-forked"
+                    className="octicon octicon-repo-forked"
                     viewBox="0 0 10 16"
                     version="1.1"
                     width="10"
