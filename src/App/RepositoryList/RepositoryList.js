@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class RepositoryList extends Component {
   render() {
-    console.log('this.props: ', this.props);
+    // console.log('this.props: ', this.props);
 
     const { repositories } = this.props;
     let repositoryList = null;
@@ -24,9 +25,14 @@ class RepositoryList extends Component {
             className="Card flex flex-column pa3 bt bb b--light-gray br2 w-100 mh2"
             key={id}
           >
-            <div className="line-1 flex b blue">
-              <span className="grow pointer">{name}</span>
-            </div>
+            <Link
+              to={name.toLowerCase()}
+              className="no-underline underline-hover blue"
+            >
+              <div className="line-1 flex b">
+                <span className="pointer">{name}</span>
+              </div>
+            </Link>
 
             <div className="line-2 pv2">
               <i>{description}</i>
