@@ -1,25 +1,29 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
+// import { Query } from 'react-apollo';
+
 import Home from '../Home/Home';
+import RepositoryDetails from '../RepositoryDetails/RepositoryDetails';
+// import { GET_REPO_DATA } from '../../queries/queries';
+
+// const User = 'kapil5harma';
+// const RepoName = 'Portfolio';
 
 const Main = props => {
-  const { avatarUrl, bio, location, name, websiteUrl } = props;
-  const homeProps = {
-    ...avatarUrl,
-    ...bio,
-    ...location,
-    ...name,
-    ...websiteUrl
-  };
+  // console.log('props: ', props);
 
   return (
-    <main className="Container flex justify-center pa3 tc">
+    // <Query query={GET_REPO_DATA} variables={{ User, RepoName }}>
+    //   {res => {
+    //     console.log('res: ', res);
+    //     const { loading } = res;
+    //     const { user, repositoryDetails } = res.data;
+
+    <main className="Main">
       <Switch>
-        {/* <Route path="/" exact strict component={Home}> */}
-        <Route path="/" exact strict>
-          {() => <Home {...homeProps} />}
-        </Route>
+        <Route path="/" exact strict component={Home} />
+        <Route path="/" component={RepositoryDetails} />
       </Switch>
     </main>
   );
