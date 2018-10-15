@@ -116,6 +116,28 @@ export const GET_TABS_DATA = gql`
   }
 `;
 
+export const GET_REPO_DATA = gql`
+  query($User: String!, $RepoName: String!) {
+    user: user(login: $User) {
+      id
+      login
+    }
+    repository(owner: $User, name: $RepoName) {
+      id
+      name
+      description
+      homepageUrl
+      watchers {
+        totalCount
+      }
+      stargazers {
+        totalCount
+      }
+      forkCount
+    }
+  }
+`;
+
 export const GET_ORGANIZATION = gql`
   query($Organization: String!) {
     organization(login: $Organization) {
