@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 const GitHubCalendar = require('github-calendar');
 
@@ -35,7 +36,12 @@ class Overview extends Component {
                   d="M8 4v1H0V4h8zM0 8h8V7H0v1zm0 3h8v-1H0v1z"
                 />
               </svg>
-              <div className="pl2 grow pointer">{name}</div>
+              <Link
+                to={name.toLowerCase()}
+                className="no-underline underline-hover blue"
+              >
+                <div className="pl2 pointer">{name}</div>
+              </Link>
             </div>
             <div className="line-2 pv2">
               <i>{description}</i>
