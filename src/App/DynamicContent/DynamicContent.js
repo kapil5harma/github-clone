@@ -59,10 +59,10 @@ class DynamicContent extends Component {
                   <Stars {...starredRepositories} loading={loading} />
                 </TabPanel>
                 <TabPanel>
-                  <Followers {...followers} />
+                  <Followers {...followers} loading={loading} />
                 </TabPanel>
                 <TabPanel>
-                  <Followers {...following} />
+                  <Followers {...following} loading={loading} />
                 </TabPanel>
               </Tabs>
             </div>
