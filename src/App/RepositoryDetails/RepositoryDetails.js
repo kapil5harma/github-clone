@@ -8,6 +8,10 @@ const User = 'kapil5harma';
 const RepoName = 'Portfolio';
 
 class RepositoryDetails extends Component {
+  state = {
+    repoContents: null
+  };
+
   componentDidMount = () => {
     const baseURL = 'https://api.github.com';
     const apiEndpointToGetContent = '/repos/kapil5harma/Portfolio/contents/';
@@ -16,7 +20,10 @@ class RepositoryDetails extends Component {
       .then(response => response.json())
       .then(data => {
         console.log('Repo Contents: ', data);
-        // this.setState({ data })
+        this.setState({ repoContents: data });
+      })
+      .catch(err => {
+        console.log('Error fetching repo contents...');
       });
   };
 
@@ -29,7 +36,9 @@ class RepositoryDetails extends Component {
             data: { user, repository },
             loading
           } = res;
-
+          if (loading) {
+            return null;
+          }
           console.log('user: ', user);
           console.log('repository: ', repository);
 
@@ -60,16 +69,16 @@ class RepositoryDetails extends Component {
                   <span className="ml1 f4">
                     <Link
                       className="pointer blue underline-hover no-underline b"
-                      to={'kapil5harma'}
+                      to={user.login}
                     >
-                      kapil5harma
+                      {user.login}
                     </Link>{' '}
                     /{' '}
                     <Link
                       className="pointer blue underline-hover no-underline b"
-                      to="Portfolio"
+                      to={`${user.login}/${repository.name}`}
                     >
-                      Portfolio
+                      {repository.name}
                     </Link>
                   </span>
                 </div>
@@ -123,6 +132,87 @@ class RepositoryDetails extends Component {
                     </svg>
                     <span className="ml1">{'Fork'}</span>
                   </span>
+                </div>
+              </div>
+              <div className="details flex flex-column pa3">
+                <div className="flex justify-between items-center">
+                  <div className="desc-and-url">
+                    <span>{repository.description}</span>
+                    <a
+                      className="pointer blue no-underline underline-hover ml2"
+                      href={repository.homepageUrl}
+                    >
+                      {repository.homepageUrl}
+                    </a>
+                  </div>
+                  <div className="edit-button">
+                    <span className="black flex ba b--gray bg-light-gray hover-bg-moon-gray pointer br2 pv1 ph3 h-100 mh3">
+                      Edit
+                    </span>
+                  </div>
+                </div>
+                <div className="contents flex flex-column">
+                  <span className="f4 b mt3">Source Files</span>
+                  <div className="flex flex-column ba br2 ma2 pa2">
+                    {this.state.repoContents ? (
+                      <div className="directories">
+                        {this.state.repoContents.map(content => {
+                          if (content.type === 'dir') {
+                            return (
+                              <div
+                                className="dir flex items-center"
+                                key={`${content.type}-${content.name}`}
+                              >
+                                <svg
+                                  className="octicon octicon-file-directory"
+                                  viewBox="0 0 14 16"
+                                  version="1.1"
+                                  width="14"
+                                  height="16"
+                                  aria-hidden="true"
+                                >
+                                  <path
+                                    fillRule="evenodd"
+                                    d="M13 4H7V3c0-.66-.31-1-1-1H1c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V5c0-.55-.45-1-1-1zM6 4H1V3h5v1z"
+                                  />
+                                </svg>
+                                <span className="ml2">{content.name}</span>
+                              </div>
+                            );
+                          }
+                        })}
+                      </div>
+                    ) : null}
+                    {this.state.repoContents ? (
+                      <div className="files">
+                        {this.state.repoContents.map(content => {
+                          if (content.type === 'file') {
+                            return (
+                              <div
+                                className="file flex items-center"
+                                key={`${content.type}-${content.name}`}
+                              >
+                                <svg
+                                  className="octicon octicon-file"
+                                  viewBox="0 0 12 16"
+                                  version="1.1"
+                                  width="12"
+                                  height="16"
+                                  aria-hidden="true"
+                                >
+                                  <path
+                                    fillRule="evenodd"
+                                    d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"
+                                  />
+                                </svg>
+                                <span className="ml2">{content.name}</span>
+                              </div>
+                            );
+                          }
+                        })}
+                      </div>
+                    ) : null}
+                  </div>
                 </div>
               </div>
             </div>
