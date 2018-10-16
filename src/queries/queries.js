@@ -127,6 +127,7 @@ export const GET_REPO_DATA = gql`
       name
       description
       homepageUrl
+      viewerHasStarred
       watchers {
         totalCount
       }
@@ -165,8 +166,8 @@ export const GET_REPOSITORIES_OF_ORGANIZATION = gql`
 `;
 
 export const STAR_REPOSITORY = gql`
-  mutation($id: ID!) {
-    addStar(input: { starrableId: $id }) {
+  mutation($repositoryId: ID!) {
+    addStar(input: { starrableId: $repositoryId }) {
       starrable {
         id
         viewerHasStarred
@@ -179,6 +180,7 @@ export const UNSTAR_REPOSITORY = gql`
   mutation($repositoryId: ID!) {
     removeStar(input: { starrableId: $repositoryId }) {
       starrable {
+        id
         viewerHasStarred
       }
     }
