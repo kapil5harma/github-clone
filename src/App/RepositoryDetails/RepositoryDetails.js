@@ -8,6 +8,18 @@ const User = 'kapil5harma';
 const RepoName = 'Portfolio';
 
 class RepositoryDetails extends Component {
+  componentDidMount = () => {
+    const baseURL = 'https://api.github.com';
+    const apiEndpointToGetContent = '/repos/kapil5harma/Portfolio/contents/';
+
+    fetch(`${baseURL}${apiEndpointToGetContent}`)
+      .then(response => response.json())
+      .then(data => {
+        console.log('Repo Contents: ', data);
+        // this.setState({ data })
+      });
+  };
+
   render() {
     return (
       <Query query={GET_REPO_DATA} variables={{ User, RepoName }}>
