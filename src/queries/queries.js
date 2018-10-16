@@ -128,6 +128,7 @@ export const GET_REPO_DATA = gql`
       description
       homepageUrl
       viewerHasStarred
+      viewerSubscription
       watchers {
         totalCount
       }
@@ -182,6 +183,34 @@ export const UNSTAR_REPOSITORY = gql`
       starrable {
         id
         viewerHasStarred
+      }
+    }
+  }
+`;
+
+export const WATCH_REPOSITORY = gql`
+  mutation($repositoryId: ID!) {
+    updateSubscription(
+      input: { subscribableId: $repositoryId, state: SUBSCRIBED }
+    ) {
+      clientMutationId
+      subscribable {
+        id
+        viewerSubscription
+      }
+    }
+  }
+`;
+
+export const UNWATCH_REPOSITORY = gql`
+  mutation($repositoryId: ID!) {
+    updateSubscription(
+      input: { subscribableId: $repositoryId, state: UNSUBSCRIBED }
+    ) {
+      clientMutationId
+      subscribable {
+        id
+        viewerSubscription
       }
     }
   }
