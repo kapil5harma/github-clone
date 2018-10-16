@@ -3,14 +3,14 @@ import { UNSTAR_REPOSITORY } from '../../queries/queries';
 import { Mutation } from 'react-apollo';
 
 const Unstar = props => {
-  console.log('props: ', props);
+  // console.log('props: ', props);
   const { repositoryId } = props;
   return (
     <Mutation mutation={UNSTAR_REPOSITORY} variables={{ repositoryId }}>
-      {starRepository => (
+      {unStarRepository => (
         <span
           className="black flex ba b--gray bg-light-gray hover-bg-moon-gray pointer br2 pa2 h-100 mh3"
-          onClick={starRepository}
+          onClick={unStarRepository}
         >
           <svg
             aria-label="star"
