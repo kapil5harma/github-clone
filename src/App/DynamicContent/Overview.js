@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 const GitHubCalendar = require('github-calendar');
 
@@ -8,10 +8,8 @@ class Overview extends Component {
     GitHubCalendar('#github-calendar', this.props.username);
   };
 
-  // componentDidUpdate = (prevProps, prevState) => {};
-
   render() {
-    const { pinnedRepositories } = this.props;
+    const { pinnedRepositories, location } = this.props;
     let pinnedRepos = null;
 
     if (pinnedRepositories) {
@@ -37,7 +35,7 @@ class Overview extends Component {
                 />
               </svg>
               <Link
-                to={name.toLowerCase()}
+                to={`${location.pathname}/${name}`}
                 className="no-underline underline-hover blue"
               >
                 <div className="pl2 pointer">{name}</div>
@@ -64,4 +62,4 @@ class Overview extends Component {
   }
 }
 
-export default Overview;
+export default withRouter(Overview);

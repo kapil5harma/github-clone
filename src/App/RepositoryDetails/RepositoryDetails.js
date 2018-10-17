@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Query } from 'react-apollo';
 
 import { GET_REPO_DATA } from '../../queries/queries';
-import { Query } from 'react-apollo';
 import Unstar from '../common/Unstar';
 import Star from '../common/Star';
 import Unwatch from '../common/Unwatch';
@@ -10,25 +10,6 @@ import Watch from '../common/Watch';
 
 const User = 'kapil5harma';
 const RepoName = 'Portfolio';
-
-// const updateRepo = (url = ``, data = {}) => {
-//   console.log('url: ', url);
-//   console.log('data: ', data);
-//   // Default options are marked with *
-//   return fetch(url, {
-//     method: 'PATCH', // *GET, POST, PUT, DELETE, etc.
-//     // mode: "cors", // no-cors, cors, *same-origin
-//     // cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-//     // credentials: "same-origin", // include, same-origin, *omit
-//     headers: {
-//       'Content-Type': 'application/json; charset=utf-8'
-//       // "Content-Type": "application/x-www-form-urlencoded",
-//     },
-//     // redirect: "follow", // manual, *follow, error
-//     referrer: 'no-referrer', // no-referrer, *client
-//     body: JSON.stringify(data) // body data type must match "Content-Type" header
-//   }).then(response => response.json()); // parses response to JSON
-// };
 
 class RepositoryDetails extends Component {
   state = {
@@ -38,17 +19,10 @@ class RepositoryDetails extends Component {
   componentDidMount = () => {
     const baseURL = 'https://api.github.com';
     const apiEndpointToGetContent = '/repos/kapil5harma/Portfolio/contents/';
-    // const apiEndpointToUpdateRepo = '/repos/kapil5harma/Portfolio';
-
-    // updateRepo(`${baseURL}${apiEndpointToUpdateRepo}`, {
-    //   name: 'Portfolio',
-    //   description: 'Hello!'
-    // });
 
     fetch(`${baseURL}${apiEndpointToGetContent}`)
       .then(response => response.json())
       .then(data => {
-        // console.log('Repo Contents: ', data);
         this.setState({ repoContents: data });
       })
       .catch(err => {
@@ -60,7 +34,6 @@ class RepositoryDetails extends Component {
     return (
       <Query query={GET_REPO_DATA} variables={{ User, RepoName }}>
         {res => {
-          // console.log('res: ', res);
           const {
             data: { user, repository },
             loading
@@ -68,14 +41,11 @@ class RepositoryDetails extends Component {
           if (loading) {
             return null;
           }
-          // console.log('user: ', user);
-          // console.log('repository: ', repository);
 
           return (
             <div className="RepositoryDetails flex-column">
               <div
                 className="flex toolbar justify-between items-center pa3"
-                // style={{ background: '#e6ebf1' }}
                 style={{
                   backgroundImage:
                     'linear-gradient(-180deg,#f0f3f6,#e6ebf1 90%)'
@@ -98,14 +68,14 @@ class RepositoryDetails extends Component {
                   <span className="ml1 f4">
                     <Link
                       className="pointer blue underline-hover no-underline b"
-                      to={user.login}
+                      to={`/${user.login}`}
                     >
                       {user.login}
                     </Link>{' '}
                     /{' '}
                     <Link
                       className="pointer blue underline-hover no-underline b"
-                      to={`${user.login}/${repository.name}`}
+                      to={`/${user.login}/${repository.name}`}
                     >
                       {repository.name}
                     </Link>
@@ -187,7 +157,7 @@ class RepositoryDetails extends Component {
                                 <span className="ml2">{content.name}</span>
                               </div>
                             );
-                          }
+                          } else return null;
                         })}
                       </div>
                     ) : null}
@@ -216,7 +186,7 @@ class RepositoryDetails extends Component {
                                 <span className="ml2">{content.name}</span>
                               </div>
                             );
-                          }
+                          } else return null;
                         })}
                       </div>
                     ) : null}
