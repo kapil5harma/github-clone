@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 
 class RepositoryList extends Component {
   render() {
-    // console.log('this.props: ', this.props);
-
     const { repositories } = this.props;
     let repositoryList = null;
 

@@ -3,8 +3,8 @@ import { UNWATCH_REPOSITORY } from '../../queries/queries';
 import { Mutation } from 'react-apollo';
 
 const Unwatch = props => {
-  // console.log('props: ', props);
   const { repositoryId } = props;
+
   return (
     <Mutation mutation={UNWATCH_REPOSITORY} variables={{ repositoryId }}>
       {unWatchRepository => (

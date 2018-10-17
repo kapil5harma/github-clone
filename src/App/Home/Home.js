@@ -9,13 +9,9 @@ import { GET_USER } from '../../queries/queries';
 const User = 'kapil5harma';
 
 const Home = props => {
-  // console.log('props: ', props);
-  // const { avatarUrl, bio, location, name, websiteUrl } = props;
   return (
     <Query query={GET_USER} variables={{ User }}>
       {res => {
-        console.log('res: ', res);
-
         const {
           data: { user },
           loading

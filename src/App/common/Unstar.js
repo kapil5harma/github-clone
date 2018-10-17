@@ -3,7 +3,6 @@ import { UNSTAR_REPOSITORY } from '../../queries/queries';
 import { Mutation } from 'react-apollo';
 
 const Unstar = props => {
-  // console.log('props: ', props);
   const { repositoryId } = props;
   return (
     <Mutation mutation={UNSTAR_REPOSITORY} variables={{ repositoryId }}>

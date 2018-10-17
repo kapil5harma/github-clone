@@ -17,7 +17,6 @@ class DynamicContent extends Component {
     return (
       <Query query={GET_TABS_DATA} variables={{ User }}>
         {res => {
-          // console.log('res: ', res);
           const {
             data: {
               pinnedRepositories,
@@ -28,11 +27,6 @@ class DynamicContent extends Component {
             },
             loading
           } = res;
-          // console.log('pinnedRepositories: ', pinnedRepositories);
-          // console.log('repositories: ', repositories);
-          // console.log('starredRepositories: ', starredRepositories);
-          // console.log('followers: ', followers);
-          // console.log('following: ', following);
 
           return (
             <div className="dynamic-content w-100 mw8 tl">
