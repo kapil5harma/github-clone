@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Home from '../Home/Home';
 import RepositoryDetails from '../RepositoryDetails/RepositoryDetails';
@@ -15,6 +15,7 @@ const Main = props => {
           strict
           component={RepositoryDetails}
         />
+        <Redirect to="/kapil5harma" />
       </Switch>
     </main>
   );
