@@ -17,14 +17,17 @@
     "react-scripts": "2.0.4",
     "react-tabs": "^2.3.0",
     "redux": "^4.0.0",
+    "serve": "^10.0.2",
     "styled-components": "^3.4.10",
     "tachyons": "^4.11.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "dev": "react-scripts start",
+    "start": "serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
